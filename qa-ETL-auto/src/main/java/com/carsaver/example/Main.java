@@ -77,19 +77,19 @@ public class Main {
                 .limit(5)
                 .findFirst().orElseThrow(() -> new IllegalStateException("Unable to find execution for " + bucket + "/" + key));
 
-        AtomicReference<ExecutionStatus> status = new AtomicReference<>();
+        AtomicReference<DescribeExecutionResponse> status = new AtomicReference<>();
         System.out.println(execution.executionArn());
 
         await().atMost(2, TimeUnit.MINUTES)
                 .pollDelay(5, TimeUnit.SECONDS)
                 .until(() -> {
                     DescribeExecutionResponse details = getDetails(execution.executionArn());
-                    status.set(details.status());
+                    status.set(details);
                     return details.status() != ExecutionStatus.RUNNING;
                 });
 
-        System.out.println(status.get());
-        System.out.println(execution.output()); //Here I am getting null value instead of JSON Response. How can I get output JSON RESPONSE?
+        System.out.println(status.get().status());
+        System.out.println(status.get().output()); //Here I am getting null value instead of JSON Response. How can I get output JSON RESPONSE?
     }
 
     private static DescribeExecutionResponse getDetails(String arn) {
