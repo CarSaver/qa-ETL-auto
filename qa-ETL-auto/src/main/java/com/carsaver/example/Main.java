@@ -89,7 +89,7 @@ public class Main {
                 });
 
         System.out.println(status.get());
-
+        System.out.println(execution.output()); //Here I am getting null value instead of JSON Response. How can I get output JSON RESPONSE?
     }
 
     private static DescribeExecutionResponse getDetails(String arn) {
