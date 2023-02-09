@@ -25,7 +25,7 @@ public class Main {
             JSONArray array = new JSONArray();
             jsonObj.put("runIds", array.put("e5817710-5491-11ed-bdc3-0242ac120002"));
             jsonObj.put("campaignId", "965e033c-7bd2-4836-bb0c-353d9037dfd5");
-            jsonObj.put("numberOfCampaignGroups", "3");
+            jsonObj.put("numberOfCampaignGroups", 3);
             String json = jsonObj.toString();
             System.out.println(json);
             SdkBytes payload = SdkBytes.fromUtf8String(json) ;
@@ -57,4 +57,4 @@ public class Main {
             System.exit(1);
         }
     }
-    }
+}
